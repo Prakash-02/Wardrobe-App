@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:8080' // change to your deployed backend URL later
+// Set VITE_API_BASE in Vercel's project settings once the backend is deployed.
+// Locally, create a .env.local file with: VITE_API_BASE=http://localhost:8083
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8083'
 
 function getToken() {
   return localStorage.getItem('wardrobe_token')
