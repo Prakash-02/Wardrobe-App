@@ -6,6 +6,7 @@ export default function Signup() {
   const { signup } = useAuth()
   const navigate = useNavigate()
   const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -16,7 +17,7 @@ export default function Signup() {
     setError('')
     setSubmitting(true)
     try {
-      await signup(name, email, password)
+      await signup(name, username, email, password)
       navigate('/wardrobe')
     } catch (err) {
       setError(err.message)
@@ -36,6 +37,14 @@ export default function Signup() {
         <label>Name
           <input value={name} onChange={(e) => setName(e.target.value)} required />
         </label>
+        <label>Username
+          <input value={username} onChange={(e) => setUsername(e.target.value)}
+                 pattern="[a-zA-Z0-9_]{3,20}" title="3-20 characters: letters, numbers, underscore"
+                 placeholder="e.g. jane_doe" required />
+        </label>
+        <p className="hint" style={{ margin: '-6px 0 0' }}>
+          This is what others search for — pick something you're okay sharing.
+        </p>
         <label>Email
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>

@@ -20,11 +20,11 @@ async function handle(response) {
 }
 
 export const api = {
-  signup(name, email, password) {
+  signup(name, username, email, password) {
     return fetch(`${API_BASE}/api/auth/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ name, username, email, password })
     }).then(handle)
   },
 
@@ -39,6 +39,32 @@ export const api = {
   listItems() {
     return fetch(`${API_BASE}/api/wardrobe/items`, {
       headers: { Authorization: `Bearer ${getToken()}` }
+    }).then(handle)
+  },
+
+  // Search other users by username fragment, e.g. "jan" -> matches "janedoe"
+  searchUsers(query) {
+    return fetch(`${API_BASE}/api/users/search?q=${encodeURIComponent(query)}`, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    }).then(handle)
+  },
+
+  // View another user's collection. Backend returns 403 if it's private
+  // and this isn't the owner - callers should catch that specifically.
+  getUserWardrobe(username) {
+    return fetch(`${API_BASE}/api/users/${encodeURIComponent(username)}/wardrobe`, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    }).then(handle)
+  },
+
+  setVisibility(publicProfile) {
+    return fetch(`${API_BASE}/api/users/me/visibility`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getToken()}`
+      },
+      body: JSON.stringify({ publicProfile })
     }).then(handle)
   },
 

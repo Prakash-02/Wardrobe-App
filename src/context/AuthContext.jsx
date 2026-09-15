@@ -17,13 +17,19 @@ export function AuthProvider({ children }) {
 
   function persist(authResponse) {
     setToken(authResponse.token)
-    const userInfo = { id: authResponse.userId, name: authResponse.name, email: authResponse.email }
+    const userInfo = {
+      id: authResponse.userId,
+      name: authResponse.name,
+      username: authResponse.username,
+      email: authResponse.email,
+      publicProfile: authResponse.publicProfile
+    }
     localStorage.setItem('wardrobe_user', JSON.stringify(userInfo))
     setUser(userInfo)
   }
 
-  async function signup(name, email, password) {
-    const res = await api.signup(name, email, password)
+  async function signup(name, username, email, password) {
+    const res = await api.signup(name, username, email, password)
     persist(res)
   }
 
@@ -32,13 +38,23 @@ export function AuthProvider({ children }) {
     persist(res)
   }
 
+  // Called after toggling visibility so the header/toggle reflects reality
+  // without needing a full re-login.
+  function updateLocalUser(patch) {
+    setUser((prev) => {
+      const next = { ...prev, ...patch }
+      localStorage.setItem('wardrobe_user', JSON.stringify(next))
+      return next
+    })
+  }
+
   function logout() {
     setToken(null)
     localStorage.removeItem('wardrobe_user')
     setUser(null)
   }
 
-  const value = { user, checkingSession, signup, login, logout }
+  const value = { user, checkingSession, signup, login, logout, updateLocalUser }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
