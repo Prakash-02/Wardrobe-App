@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import BrandMark from '../components/BrandMark.jsx'
 
 export default function Signup() {
   const { signup } = useAuth()
@@ -29,6 +30,7 @@ export default function Signup() {
   return (
     <div className="auth-screen">
       <form className="auth-card" onSubmit={handleSubmit}>
+        <BrandMark />
         <h1>Create your account</h1>
         <p className="auth-sub">Start building your digital wardrobe.</p>
 

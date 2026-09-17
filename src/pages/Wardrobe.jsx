@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api.js'
 import { useAuth } from '../context/AuthContext.jsx'
+import BrandMark from '../components/BrandMark.jsx'
 
 export default function Wardrobe() {
   const { user, logout, updateLocalUser } = useAuth()
@@ -46,6 +47,7 @@ export default function Wardrobe() {
     <div className="wardrobe-screen">
       <header className="wardrobe-header">
         <div>
+          <BrandMark />
           <h1>{user?.name}'s wardrobe</h1>
           <p className="hint">{items.length} item{items.length === 1 ? '' : 's'}</p>
         </div>

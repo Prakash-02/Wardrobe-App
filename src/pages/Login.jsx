@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import BrandMark from '../components/BrandMark.jsx'
 
 export default function Login() {
   const { login } = useAuth()
@@ -27,6 +28,7 @@ export default function Login() {
   return (
     <div className="auth-screen">
       <form className="auth-card" onSubmit={handleSubmit}>
+        <BrandMark />
         <h1>Welcome back</h1>
         <p className="auth-sub">Log in to your wardrobe.</p>
 

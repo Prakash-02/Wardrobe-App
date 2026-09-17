@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --plum: #2B2530;
-  --plum-soft: #3D3441;
-  --sand: #EFE8DC;
-  --berry: #A24B5E;
-  --berry-dark: #7E3A49;
-  --line: #D8CFC0;
-  --ink: #2B2530;
+  --plum: #25262B;
+  --plum-soft: #45444A;
+  --sand: #F5F0E8;
+  --berry: #E56B5D;
+  --berry-dark: #B94D45;
+  --mint: #C9EBDD;
+  --gold: #F2C861;
+  --line: #DED6CA;
+  --ink: #25262B;
   --radius: 14px;
 }
 
@@ -19,6 +21,34 @@ body {
   color: var(--ink);
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--plum);
+}
+
+.brand-pig {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--mint);
+  border: 2px solid var(--plum);
+  border-radius: 13px 13px 15px 15px;
+  font-size: 1.45rem;
+  line-height: 1;
+  transform: rotate(-4deg);
+}
+
+.brand-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 h1, h2 {
@@ -47,7 +77,7 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 }
 
 .auth-card {
-  background: white;
+  background: #FFFDF9;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 32px 28px;
@@ -212,6 +242,10 @@ button:focus-visible, input:focus-visible, a:focus-visible {
   margin-bottom: 20px;
 }
 
+.wardrobe-header .brand-mark {
+  margin-bottom: 12px;
+}
+
 .wardrobe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -278,6 +312,10 @@ button:focus-visible, input:focus-visible, a:focus-visible {
   border-radius: var(--radius);
   padding: 14px 16px;
   margin-bottom: 20px;
+}
+
+.visibility-row strong {
+  color: var(--plum);
 }
 
 /* ---------- Search ---------- */
